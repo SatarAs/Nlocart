@@ -1,3 +1,1119 @@
+@import '~bootstrap/scss/bootstrap';
+
+@font-face {
+    font-family: "lato_regular";
+    src: url("../font/Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "lato_light";
+    src: url("../font/Lato-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "lato_black";
+    src: url("../font/Lato-Black.ttf") format("truetype");
+}
+
+.alert-success, .alert{
+    color: #032f62;
+    background: #dbedff;
+    border: 1px solid rgba(27,31,35,0.15);
+}
+
+.bg_white {
+    color: #FFFFFF;
+}
+
+form ul {
+    padding: 0;
+}
+
+form ul li {
+    color: #c63834;
+    list-style: none;
+    font-family: lato_black, sans-serif;
+}
+
+.line {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: hidden;
+}
+
+#page-loader {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.999);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.loading-wrapper > img {
+    position: fixed;
+    top: 45%;
+    left: 45%
+}
+
+.loader {
+    z-index: 9999;
+    top : 0;
+    left : 0;
+    height : 100%;
+    width : 100%;
+}
+
+.ldBar-label {
+    color: #048B9A;
+    font-size: 50px;
+}
+
+.bouton_lien {
+    background-color: #048B9A;
+    color: #FFFFFF;
+    padding: 10px 20px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.bouton_lien:hover {
+    color: rgba(0,0,0,0.95);
+}
+
+.active_link {
+    color: #048B9A !important;
+}
+
+.clear {
+    width:0;
+    height:0;
+    clear:both;
+}
+
+html {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: lightgray;
+
+    font-family: "lato_regular", Arial, Helvetica, sans-serif;
+    background: url("../img/oeuvres/nla-background.jpg")repeat-y;
+}
+
+main {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    max-width: 1200px;
+
+    background-color: #f3f3f3;
+    min-height: calc(100vh - 160px);
+}
+
+.no-bg {
+    background-color:rgba(0, 0, 0, 0);
+}
+
+.container {
+
+    margin: 0 auto;
+}
+
+a, a:visited,a:hover, a:focus {
+    text-decoration: none;
+    opacity: 1;
+    transition-duration: 0.8s;
+}
+
+
+/* -------------------------- MENU DESKTOP --------------------------- */
+.navbar-default {
+    background-color: rgba(0,0,0, 0.95);
+    background-image: none;
+    border: none;
+}
+
+.navbar-brand {
+    margin-left: 0;
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.navbar-brand a:hover {
+    opacity: 0.5;
+    transition-duration: 0.5s;
+    color: #048B9A;
+}
+
+#logo_ecloz {
+    margin-top: -5px;
+}
+
+
+#main_menu {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#main_menu li {
+    float: none;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+#main_menu li a, .navbar-right ul li a {
+    color: rgb(255, 255, 255);
+}
+
+#main_menu li a:hover {
+    color: #048B9A;
+    opacity: 1;
+    transition-duration: 0.5s;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-nav {
+    margin: auto;
+    padding-top : 10px;
+
+}
+
+.navbar-right li {
+    display: inline-block;
+    font-family: "lato_light", Arial, Helvetica, sans-serif;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:visited {
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #048B9A;
+}
+
+.navbar-right li a {
+    padding: 15px 5px;
+}
+
+.navbar-right li:last-child a {
+    padding-right: 0;
+}
+
+
+/* -------------------------- FOOTER --------------------------- */
+
+footer {
+    background-color: rgba(0,0,0, 0.95);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-family: "lato_light", Arial, Helvetica, sans-serif;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer i.fa {
+    font-size: 30px;
+}
+
+footer a, footer a:visited {
+    color: white;
+}
+
+footer a:hover {
+    color: #048B9A;
+}
+
+#logo_NLocArt {
+    width: 150px;
+}
+
+footer img {
+    padding: 5px;
+}
+
+
+
+/* -----------------------PAGE NLOCART----------------------------------- */
+
+#nlocart-page {
+    margin-bottom: 20px;
+    margin-top: 80px;
+}
+
+#nlocart-page#logo_nlc {
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+
+#nlocart-page main {
+    padding-left:20px;
+    padding-right:20px;
+}
+
+#nlocart-page h2 {
+    color: #048B9A;
+    padding-bottom: 30px;
+}
+
+#nlocart-page .equipe strong {
+    text-transform: uppercase;
+}
+
+#nlocart-page .equipe img {
+    width : 100%;
+}
+
+#nlocart-page nom {
+    height:200px;
+}
+
+#nlocart-page .list-equipe {
+    vertical-align: middle;
+}
+
+#nlocart-page .membre p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#nlocart-page .pourquoi p {
+    font-size: 16px;
+}
+
+#nlocart-page #contact-nlocart {
+    padding-top:0;
+}
+
+
+/* -----------------------PAGE TERMES LOCATION----------------------------------- */
+
+#termesLocation {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+
+/* -----------------------PAGE ACCUEIL----------------------------------- */
+
+#bloc_bienvenue {
+    position: relative;
+}
+
+#bloc_texte_bienvenue {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+
+    background-color: rgba(255,255,255,0.65)
+}
+
+#bloc_texte_bienvenue h1 {
+    font-size: 45px;
+}
+
+#bloc_texte_bienvenue h1 span {
+    color: #048B9A;
+    font-family: "lato_black", Arial, Helvetica, sans-serif;
+}
+
+#bloc_texte_bienvenue h1 span > a {
+    color: #048B9A;
+}
+
+#bloc_texte_bienvenue h1 span > a:hover {
+    color: rgba(0,0,0, 0.5);
+}
+
+#bloc_a_la_une h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#trait_bleu {
+    height: 5px;
+    background-color: #048B9A;
+    margin-left: 15px;
+}
+
+#oeuvres_a_la_une {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    order: initial;
+    flex-direction: row;
+
+    background-color: rgba(230,230,230,0.64);
+
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+
+#oeuvres_a_la_une .img-responsive {
+    background-color: white;
+}
+
+#lien_catalogue {
+    text-align: center;
+    margin-top:40px;
+    margin-bottom: 20px;
+}
+
+
+/* ------------------------PAGE ARTISTE-------------------------- */
+
+#artiste {
+    padding-top: 60px;
+}
+
+#photo_ecloz {
+    margin-top: 30px;
+}
+
+#texte_presentation {
+    margin-top: 30px;
+}
+
+#texte_presentation h1 {
+    display: inline;
+    color: #048B9A;
+    font-family: "lato_black", Arial, Helvetica, sans-serif;
+}
+
+#texte_presentation .social_media {
+    display: inline;
+    margin-left: 30px;
+}
+
+#texte_presentation .social_media img {
+    vertical-align: top;
+    margin-top: 10px;
+    margin-left: 5px;
+
+}
+
+#texte_presentation p {
+    margin-bottom: 10px;
+}
+
+
+.presentation_artiste {
+    text-align: justify;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+.travail {
+    margin-bottom: 30px;
+}
+
+.travail h2 {
+    margin-bottom: 0;
+}
+
+.videos_travail {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(230,230,230,0.64);
+}
+
+#lien_contact_artiste {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+
+/* -----------------------PAGE CATALOGUE----------------------------------- */
+
+.container_catalogue {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    order: initial;
+    flex-direction: row;
+
+    background-color: rgba(230,230,230,0.64);
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.titre_catalogue h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.apercu_catalogue {
+    position: relative;
+}
+
+.overlay_apercu_catalogue, .overlay_catalogue {
+    position: absolute;
+    top: 0;
+    bottom: 10px;
+    left: 15px;
+    right: 15px;
+    z-index: 1000;
+
+    text-align: center;
+
+    background-color: #000000;
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+.overlay_apercu_catalogue span, .overlay_catalogue span {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+    font-size: 20px;
+}
+
+.overlay_catalogue span{
+    font-size: 14px;
+}
+
+.apercu_catalogue a img {
+    filter: grayscale(0);
+    max-height: 100%;
+    margin-bottom: 10px;
+    box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.5);
+}
+
+.apercu_catalogue a:hover .overlay_apercu_catalogue, .image-gallerie a:hover .overlay_catalogue {
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: alpha(opacity=100);
+    opacity: 1;
+    top: 0;
+}
+
+.apercu_catalogue a:hover img {
+    opacity: 0.8;
+    filter: grayscale(1);
+    transition-duration: 0.5s;
+}
+
+.overlay_apercu_catalogue, .overlay_catalogue {
+    position: absolute;
+    top: 0;
+    bottom: 10px;
+    left: 15px;
+    right: 15px;
+    z-index: 1000;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+    box-sizing: content-box;
+}
+
+.overlay_apercu_catalogue, .overlay_catalogue {
+    position: absolute;
+}
+
+.pagination {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.pagination a {
+    color: #000000;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.pagination a.current {
+    background-color: #048B9A;
+    color: #FFFFFF;
+    padding: 5px 10px;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+.image-gallerie {
+    width:  100%;
+    background-color: white;
+}
+
+/* -----------------------PAGE OEUVRE----------------------------------- */
+
+.presentation_oeuvre {
+    margin-top: 20px;
+}
+
+#photo_oeuvre img {
+    background-color: #FFFFFF;
+}
+
+.titre_description_oeuvre {
+    font-family: "lato_black", serif;
+    margin-right: 20px;
+}
+
+.groupe_bouton {
+    text-align: left;
+    padding-top: 15px;
+}
+
+
+.bouton_louer {
+    display: inline-block;
+    background-image: none;
+    background-color: #048B9A;
+    margin-top: 10px;
+    width: 250px;
+}
+
+.bouton_louer:hover {
+    color: rgba(0,0,0,0.95);
+    background-image: none;
+    background-color: #048B9A;
+}
+
+.bouton_acheter {
+    display: inline-block;
+    background-image: none;
+    margin-top: 10px;
+    width: 250px;
+}
+
+.bouton_acheter:hover {
+    color: rgba(0,0,0,0.95);
+    background-image: none;
+}
+
+.btn-purple {
+    background-color: rgb(128, 0, 128);
+    color: #FFFFFF;
+}
+
+.a_decouvrir {
+    margin-bottom: 20px;
+}
+
+.titre_description_oeuvre {
+    display: inline;
+}
+
+.indisponible, .disponible {
+    padding: 5px 10px;
+    display: inline;
+}
+
+.disponible {
+    background-color: rgb(0, 139, 30);
+    color: #f3f3f3;
+}
+
+.indisponible {
+    background-color: rgb(179, 0, 0);
+    color: #f3f3f3;
+}
+
+#oeuvre_form form p, #oeuvre_form form input{
+    display: inline;
+}
+
+#oeuvre_form form .dimensions {
+    width: 44%;
+    margin-right: 8px;
+}
+
+.titre_description_oeuvre {
+    display: inline;
+}
+
+.indisponible, .disponible {
+    padding: 5px 10px;
+    display: inline;
+}
+
+.disponible {
+    background-color: rgb(0, 139, 30);
+    color: #f3f3f3;
+}
+
+.indisponible {
+    background-color: rgb(179, 0, 0);
+    color: #f3f3f3;
+}
+
+#oeuvre_form form p, #oeuvre_form form input{
+    display: inline;
+}
+
+#oeuvre_form form .dimensions {
+    width: 44%;
+    margin-right: 8px;
+}
+
+
+/* -------------------------- LOGIN --------------------------- */
+
+#login_form .btn {
+    outline:0;
+    border-style: none;
+}
+
+#login_form.btn:focus {
+    outline:0;
+    -webkit-outline:0;
+    -moz-outline:0;
+}
+
+.form-signin {
+    max-width: 500px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin {
+    margin-bottom: 10px;
+}
+
+.form-signin .form-control {
+    font-size: 16px;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+    border-color: #048B9A;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.form-signin-heading {
+    color:rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 0;
+}
+
+.sub_section_login {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sub_section_login {
+    text-decoration: none;
+    color: #048B9A;
+}
+
+.sub_section_login a:hover {
+    text-decoration: underline;
+}
+
+#contact_reset, #signIn_Reset {
+    background-color: #c63834;
+    max-width: calc(50% - 10px);
+    margin-right: 8px;
+    display: inline;
+}
+
+#contact_validate, #signIn_Validate {
+    max-width: calc(50% - 10px);
+    margin-left: 8px;
+    display: inline;
+}
+
+#signIn_Validate {
+    margin-top: 0;
+}
+
+
+/* -------------------------- INSCRIPTION --------------------------- */
+
+#inscription {
+    margin-top:100px;
+}
+
+
+/* -------------------------- CONTACT --------------------------- */
+
+#contact {
+    padding-top: 60px;
+}
+
+#contact_form textarea{
+    margin-bottom: 10px;
+}
+
+#logo_nlocart_noir {
+    display: inline;
+}
+
+.adresse_galerie {
+    text-align: center;
+    font-size: 16px;
+    background-color: #f3f3f3;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#map {
+    height: 400px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+
+/* -------------------CGV------------------------ */
+
+#cgv {
+    text-align: justify;
+}
+
+/* -------------------Commandes------------------------ */
+
+.texte-demande {
+    padding-top: 30px;
+    font-size: 16px;
+}
+
+.btn-demande {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.commande-success {
+
+    padding-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.commande-success img{
+    max-width: 40%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#btn-retour-dash {
+    margin: 15px 0 5px 0;
+    display: block;
+    color: #000000;
+}
+
+
+/* -------------------Mentions Legales------------------------ */
+
+
+#mentions_legales {
+    text-align: justify;
+}
+
+
+/* -------------------------- DASHBOARD ADMIN --------------------------- */
+
+/* AJOUT D'OEUVRE */
+
+#oeuvre_anneeCreationOeuvre {
+    margin-top: 10px;
+}
+
+#client_submit, #oeuvre_submit, #form_submit, #membre_submit {
+    margin: 20px auto;
+    max-width: calc(50% - 10px);
+    display: inline-block;
+}
+
+#client_submit, #oeuvre_submit, #form_submit, #membre_submit {
+    margin-right: 5px;
+}
+
+#client_submit, #oeuvre_submit, #form_submit, #membre_submit {
+    margin-left: 5px;
+}
+
+#client_reset, #oeuvre_reset, #form_reset, #membre_reset {
+    max-width: calc(50% - 10px);
+    background-color: #c63834;
+    display: inline-block;
+    margin: 20px 5px;
+}
+
+
+/* -------------------------- DASHBOARD USER --------------------------- */
+
+form {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+
+
+
+/* -------------------------- MEDIA QUERIES --------------------------- */
+
+
+/* COL-XS */
+
+@media all and (max-width:767px) {
+    main {
+        background-color: #f3f3f3;
+    }
+
+    #nlocart-page .membre p {
+        font-size: 14px;
+    }
+
+    #bloc_texte_bienvenue h1 {
+        font-size: 25px;
+    }
+
+    #bloc_a_la_une h2 {
+        font-size: 15px;
+    }
+
+    #trait_bleu {
+        display: none;
+    }
+
+    .video {
+        margin-bottom: 20px;
+    }
+
+    .form-signin {
+        max-width: 100%;
+    }
+
+    #logo_nlocart_noir {
+        max-width: 150px;
+    }
+
+    #oeuvre_form form .dimensions {
+        width:90%;
+        margin-right: 8px;
+    }
+
+    .sidebar {
+        margin-top: 0;
+    }
+
+    footer img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* COL-SM */
+
+@media all and (max-width: 991px) {
+
+
+    #logo_ecloz {
+        margin-top: -9px;
+    }
+
+    .navbar-toggle, .navbar-toggle:hover, .navbar-toggle:focus {
+        background-color: #FFFFFF;
+    }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+        background-color: #048B9A;
+    }
+
+    .navbar-default .navbar-toggle:hover .icon-bar,.navbar-default .navbar-toggle:focus .icon-bar {
+        background-color: #FFFFFF;
+    }
+
+    .navbar-right{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+
+        font-family: "lato_light",Arial, Helvetica, sans-serif;
+    }
+
+    main {
+        margin-top: 50px;
+        background-color: #f3f3f3;
+    }
+
+    #bloc_texte_bienvenue h1 {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .video{
+        margin-bottom: 20px;
+    }
+
+    .groupe_bouton {
+        text-align: center;
+    }
+
+    .bouton{
+        display: inline;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .sidebar {
+        margin-top: 0;
+    }
+
+    footer img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* COL-MD */
+
+@media all and (min-width: 992px) and (max-width: 1199px){
+
+    #bloc_texte_bienvenue h1 {
+        text-align: left;
+        font-size: 40px;
+    }
+
+    footer > img.img-responsive {
+        display: inline;
+    }
+
+}
+
+/* COL-LG */
+
+@media all and (min-width: 1200px) {
+
+    footer > img.img-responsive {
+        display: inline;
+    }
+
+}
+
+/* ------------------MENU RESPONSIVE DES LE SM--------------------*/
+
+@media all and (max-width: 991px) {
+
+
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+
+    .navbar-nav>li {
+        float: none;
+    }
+
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .collapse.in {
+        display:block !important;
+    }
+
+    #logo_ecloz {
+        margin-top: -9px;
+    }
+
+    .navbar-toggle, .navbar-toggle:hover, .navbar-toggle:focus {
+        background-color: #FFFFFF;
+    }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+        background-color: #048B9A;
+    }
+
+    .navbar-default .navbar-toggle:hover .icon-bar,.navbar-default .navbar-toggle:focus .icon-bar {
+        background-color: #FFFFFF;
+    }
+
+    .navbar-right{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .navbar-default .navbar-collapse{
+        border:none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .navbar-right li{
+        display: block;
+    }
 }

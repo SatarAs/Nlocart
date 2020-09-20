@@ -12,4 +12,11 @@ import '../scss/app.scss';
 // import $ from 'jquery';
 const $ = require('jquery');
 
+require('bootstrap');
+
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+
+$('#page-loader').delay(600).fadeOut(400, function() {
+    $('#accueil').fadeIn();
+});
