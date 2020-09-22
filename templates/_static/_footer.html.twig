@@ -1,0 +1,40 @@
+<footer class="container-fluid">
+    <div class="container">
+
+        <div class="col-xs-12">
+            <p>
+                {% set route_name = app.request.attributes.get('_route') %}
+                <a href="{{ url('mentions_legales') }}" {% if route_name == 'mentions_legales' %} class="active_link" {% else %} class=""{% endif %}>{{ "Mentions légales" | trans }}</a>
+                |
+                <a href="{{ url('cgv') }}" {% if route_name == 'cgv' %} class="active_link" {% else %} class=""{% endif %}>{{ "CGU" | trans }}</a>
+                |
+                <a href="{{ url('termes-location') }}" {% if route_name == 'termes-location' %} class="active_link" {% else %} class=""{% endif %}>{{ "Termes de location" | trans }}</a>
+                |
+
+                <a href="https://nfactory.io/" target="blank">© NFactory School - 2018</a>
+
+            </p>
+        </div> <!-- /.col-xs-12-->
+
+        <div class="col-xs-12">
+            <p>
+                {% trans %}
+                Partenaires
+                {% endtrans %}
+            </p>
+        </div>
+
+        <div class="col-xs-12">
+            <a href="https://campus-saint-marc.com/" target="blank"><img src="{{ asset('build/footer/foot-csm.png') }}"></a>
+            <a href="https://fredericnoel.com/"  target="blank"><img src="{{ asset('build/footer/foot-fredericnoel.png') }}"></a>
+            <a href="https://nfactory.io/"  target="blank"><img src="{{ asset('build/footer/foot-nf.png') }}"></a>
+            <a href="https://nfactory.io/devenez-developpeur-web-nfactory-school/" target="blank"><img src="{{ asset('build/footer/foot-nfc.png') }}"></a>
+            <a href="http://www.wf3.fr/"  target="blank"><img src="{{ asset('build/footer/foot-wf3.png') }}"></a>
+        </div>
+        <div class="col-xs-12">
+            <p>
+                Powered by <a href="{{url('nlocart')}}"><img src="{{ asset('build/oeuvres/logo_NLocArt.png') }}" alt="logo NLocArt" id="logo_NLocArt"></a>
+            </p>
+        </div> <!-- /.col-xs-12-->
+    </div> <!-- /.container -->
+</footer>

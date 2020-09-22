@@ -1,3 +1,43 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+mentions_legales:
+  path:
+      en: /{_locale}/legal-notice
+      fr: /{_locale}/mentions-legales
+  controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+  requirements:
+    _locale: en|fr
+  defaults:
+    template: _static/documents/mentionsLegales.html.twig
+
+cgv:
+  path:
+      en: /{_locale}/general-conditions-sale-use
+      fr: /{_locale}/conditions-generales-vente
+  controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+  requirements:
+    _locale: en|fr
+  defaults:
+    template: _static/documents/cgv.html.twig
+
+termes-location:
+  path:
+      en: /{_locale}/rental-terms
+      fr: /{_locale}/termes-location
+  controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+  requirements:
+    _locale: en|fr
+  defaults:
+    template: _static/documents/termes-location.html.twig
+
+nlocart:
+  path:
+      en: /{_locale}/nlocart
+      fr: /{_locale}/nlocart
+  controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+  requirements:
+    _locale: en|fr
+  defaults:
+    template: _static/documents/nlocart.html.twig
