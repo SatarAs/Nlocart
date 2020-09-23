@@ -18,7 +18,13 @@ require('@fortawesome/fontawesome-free/js/all.js');
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
-
-$('#page-loader').delay(600).fadeOut(400, function() {
-    $('#accueil').fadeIn();
+// Tooltips
+$(document).ready(function() {
+    $("body").tooltip({
+        selector: '[data-toggle=tooltip]',
+        delay: {
+            show: 100,
+            hide: 200
+        }
+    });
 });
