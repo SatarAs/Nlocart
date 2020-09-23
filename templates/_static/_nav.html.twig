@@ -1,2 +1,45 @@
+<nav class="navbar navbar-expand-md navbar-default fixed-top">
+    <div class="container">
+        <button class="navbar-toggler toggler-white" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <i class="fas fa-bars bg_white text-center"></i>
+            </span>
+        </button>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" id="logo_ecloz"><img src="{{ asset('build/oeuvres/logo-ecloz.png') }}" alt="Ecloz"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 pa-r-70">
+                <li class="nav-item d-inline-block">
+                    <a href="#artiste" id="lienArtiste" class="nav-link">L'artiste</a>
+                </li>
+                {# <li><a href="{{ url('index_catalogue') }}" {% if active_link == 'catalogue' %} {{ "class=\"active_link\"" }} {% endif %}>Le Catalogue</a></li>#}
+                <li class="nav-item d-inline-block">
+                    <a href="#contact" id="lienContact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item d-inline-block">
+                    <a class="nav-link text-nowrap" href="{{ url('app_index') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Le Catalogue" | trans }}</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+{#                {%  if (app.user is not null and (app.user.roles[0] == 'ROLE_LOUEUR'))  %}#}
+                {#                        <li><a {% if active_link == 'administration' %} {{ "class=\"active_link\"" }} {% endif %} href="{{ url('admin_index') }}">Administration</a></li>#}
+                {#                    {% endif %}#}
 
+                {#                    {%  if (app.user is not null and (app.user.roles[0] == 'ROLE_MEMBRE'))  %}#}
+                {#                        <li><a href="{{ url('security_account') }}" {% if active_link == 'monCompteUser' %} {{ "class=\"active_link\"" }} {% endif %}>Mon  Compte</a></li>#}
+                {#                        <li><a href="{{ url('order_selection') }}" {% if active_link == 'panier' %} {{ "class=\"active_link\"" }} {% endif %}>Ma  Sélection</a></li>#}
+                {#                    {% endif %}#}
 
+                {%  if is_granted('IS_AUTHENTICATED_FULLY')%}
+                    {#                    <li><a href="{{ url('deconnexion') }}">Déconnexion</a></li>#}
+                    <li><a href="#">Déconnexion</a></li>
+                {% else %}
+                    <li class="nav-item d-inline-block"><a class="nav-link text-nowrap" href="{{ url('app_index') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Se Connecter" | trans }}</a></li>
+                    {#                                            <li><a href="{{ url('security_connexion') }}" {% if active_link == 'login' %} {{ "class=\"active_link\"" }} {% endif %}>Se Connecter</a></li>#}
+                    {#                    <li><a href="{{ url('security_inscription') }}" {% if active_link == 'inscription' %} {{ "class=\"active_link\"" }} {% endif %}>Inscription</a>#}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
