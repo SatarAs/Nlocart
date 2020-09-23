@@ -6,19 +6,19 @@
             </span>
         </button>
         <div class="navbar-header">
-            <a class="navbar-brand" href="/" id="logo_ecloz"><img src="{{ asset('build/oeuvres/logo-ecloz.png') }}" alt="Ecloz"></a>
+            <a class="navbar-brand" href="{{ path('app_index') }}" id="logo_ecloz"><img src="{{ asset('build/oeuvres/logo-ecloz.png') }}" alt="Ecloz"></a>
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 pa-r-70">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 pa-r-70 text-nowrap">
                 <li class="nav-item d-inline-block">
-                    <a href="#artiste" id="lienArtiste" class="nav-link">L'artiste</a>
+                    <a href="#artiste" id="lienArtiste" class="nav-link">{{ "L'artiste" | trans }}</a>
                 </li>
                 {# <li><a href="{{ url('index_catalogue') }}" {% if active_link == 'catalogue' %} {{ "class=\"active_link\"" }} {% endif %}>Le Catalogue</a></li>#}
                 <li class="nav-item d-inline-block">
-                    <a href="#contact" id="lienContact" class="nav-link">Contact</a>
+                    <a href="#contact" id="lienContact" class="nav-link">{{ "Contact" | trans }}</a>
                 </li>
                 <li class="nav-item d-inline-block">
-                    <a class="nav-link text-nowrap" href="{{ url('app_index') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Le Catalogue" | trans }}</a>
+                    <a class="nav-link" href="{{ url('app_index') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Le catalogue" | trans }}</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -33,7 +33,7 @@
 
                 {%  if is_granted('IS_AUTHENTICATED_FULLY')%}
                     {#                    <li><a href="{{ url('deconnexion') }}">Déconnexion</a></li>#}
-                    <li><a href="#">Déconnexion</a></li>
+                    <li><a href="#">{{ "Déconnexion" | trans }}</a></li>
                 {% else %}
                     <li class="nav-item d-inline-block"><a class="nav-link text-nowrap" href="{{ url('app_index') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Se Connecter" | trans }}</a></li>
                     {#                                            <li><a href="{{ url('security_connexion') }}" {% if active_link == 'login' %} {{ "class=\"active_link\"" }} {% endif %}>Se Connecter</a></li>#}
