@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}{{ "Mot de passe oublié" | trans }}{% endblock %}
+
+{% block content %}
+
+    <main class="no-bg">
+        <section id="inscription" class="animated fadeInLeftBig">
+            <div class="container" id="inscription_form">
+                <div class="col-xs-6 col-xs-push-3">
+                    <h1 class="form-signin-heading text-muted">Mot de passe oublié</h1>
+                    <form action="{{ url('app_forget_password') }}" method="post">
+                        <div class="form-group">
+{#                            {% if mailError is not null %}#}
+{#                                <div class="alert alert-danger">#}
+{#                                    {{ mailError }}#}
+{#                                </div>#}
+{#                            {% endif %}#}
+                            <label for="mail">Votre mail</label>
+                            <input type="email" name="mail" id="mail" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-lg btn-block bouton_lien" type="submit" value="Envoyer" name="forget">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
