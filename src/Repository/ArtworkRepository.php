@@ -20,6 +20,22 @@ class ArtworkRepository extends ServiceEntityRepository
         parent::__construct($registry, Artwork::class);
     }
 
+    public function findXOeuvres($nbr = null)
+    {
+        if($nbr) :
+            return $this->createQueryBuilder('a')
+                ->orderBy('a.id', 'DESC')
+                ->setMaxResults($nbr)
+                ->getQuery()
+                ->getResult();
+        else :
+            return $this->createQueryBuilder('a')
+                ->orderBy('a.id', 'DESC')
+                ->getQuery()
+                ->getResult();
+        endif;
+    }
+
     // /**
     //  * @return Artwork[] Returns an array of Artwork objects
     //  */

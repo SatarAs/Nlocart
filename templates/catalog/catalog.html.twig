@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}{{ "Le Catalogue" | trans }}{% endblock %}
+
+{% block content %}
+
+    <main class="no-bg">
+        <section id="catalogue">
+            <div class="container">
+                <div class="row">
+{#                    {% if app.request.get('commande') == true %}#}
+{#                        <div class="alert alert-success">#}
+{#                            Votre commande a bien été prise en compte,<br>#}
+{#                            Un mail de confirmation vous a été envoyé#}
+{#                        </div>#}
+{#                    {% endif %}#}
+                    <div class="titre_catalogue">
+                        <div class="col-xs-12">
+                            <h2>Le Catalogue</h2>
+                        </div>
+                        <div class="col-xs-5 col-sm-6 col-md-4" id="trait_bleu"></div>
+                    </div>
+                </div> <!-- /.row -->
+                <div class="row">
+                    <div class="container_catalogue animated fadeInLeftBig">
+
+{#                        {% for oeuvre in paginator %}#}
+
+                            <div class="col-xs-6 col-sm-3 col-md-2 apercu_catalogue">
+                                <div class="image-gallerie">
+                                    <a href="#">
+{#                                    <a href="{{ oeuvre | oeuvrelink}}">#}
+                                        <img class="img-responsive" src="#">
+{#                                        <img class="img-responsive" src="{{ asset('img/')~ oeuvre.imgOeuvre }}">#}
+                                        <div class="overlay_catalogue"> <span>Nom</span></div>
+{#                                        <div class="overlay_catalogue"> <span>{{ oeuvre.nomOeuvre }}</span></div>#}
+                                    </a>
+                                </div>
+                            </div>
+
+{#                        {% endfor %}#}
+
+                    </div>	<!-- /.container_catalogue -->
+                </div> <!-- /.row -->
+                <div class="row">
+                    <div class="pagination">
+
+{#                        {% for p in 1..nbpages %}#}
+{#                            <a {% if p== current %} class="current" {%endif%}#}
+{#                                    href="{{ url('app_catalog', {p:p}) }}">{{ p }}</a>#}
+{#                        {% endfor  %}#}
+                    </div> <!-- /.pagination -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </section>
+    </main>
+
+{% endblock %}
