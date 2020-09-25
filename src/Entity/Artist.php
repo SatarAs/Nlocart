@@ -40,11 +40,6 @@ class Artist
     private $artistEmail;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $artistBiography;
@@ -77,6 +72,13 @@ class Artist
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getArtistLastName(): ?string
@@ -125,22 +127,6 @@ class Artist
         $this->artistEmail = $artistEmail;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password): void
-    {
-        $this->password = $password;
     }
 
     public function getArtistBiography(): ?string
