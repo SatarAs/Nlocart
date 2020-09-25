@@ -1,7 +1,14 @@
 security:
+    encoders:
+        App\Entity\Customer:
+            algorithm: auto
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        users_in_memory: { memory: ~ }
+        client_provider:
+            entity:
+                class: App\Entity\Customer
+                property: customerEmail
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -9,7 +16,9 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: client_provider
+            logout:
+                path: /logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -22,3 +31,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_LOUEUR: ROLE_MEMBRE
+        ROLE_ADMIN: [ROLE_LOUEUR, ROLE_ALLOWED_TO_SWITCH]
