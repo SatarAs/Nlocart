@@ -32,12 +32,12 @@ class ArtistFixtures extends Fixture
             $artist->setId($artistData['id']);
             $artist->setArtistLastName($artistData['artist_last_name']);
             $artist->setArtistFirstName($artistData['artist_first_name']);
-            $artist->setArtistLastName($artistData['artist_nickname']);
-            $artist->setArtistLastName($artistData['artist_email']);
-            $artist->setArtistLastName($artistData['artist_biography']);
-            $artist->setArtistLastName($artistData['artist_phone_home']);
-            $artist->setArtistLastName($artistData['artist_cell_phone']);
-            $artist->setArtistLastName($artistData['artist_website']);
+            $artist->setArtistNickname($artistData['artist_nickname']);
+            $artist->setArtistEmail($artistData['artist_email']);
+            $artist->setArtistBiography($artistData['artist_biography']);
+            $artist->setArtistPhoneHome($artistData['artist_phone_home']);
+            $artist->setArtistCellPhone($artistData['artist_cell_phone']);
+            $artist->setArtistWebsite($artistData['artist_website']);
 
             $manager->persist($artist);
 
@@ -45,7 +45,7 @@ class ArtistFixtures extends Fixture
             $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metaData->setIdGenerator(new AssignedGenerator());
 
-            $this->setReference('Artist' . $artistData['artwork_category_label'], $artist);
+            $this->setReference('Artist' . $artistData['artist_nickname'], $artist);
         }
 
         $manager->flush();
