@@ -27,7 +27,7 @@ class IndexController extends AbstractController
 
 //        $artworks = $repo->findAll();
 
-        $artworks = $repo->findXOeuvres(4);
+        $artworks = $repo->findXArtworks(4);
 
         # Récupération des 4 desnieres oeuvres
 //        $oeuvres = $this->getDoctrine()->getRepository(Oeuvre::class);

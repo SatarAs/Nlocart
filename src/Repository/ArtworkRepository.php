@@ -20,7 +20,7 @@ class ArtworkRepository extends ServiceEntityRepository
         parent::__construct($registry, Artwork::class);
     }
 
-    public function findXOeuvres($nbr = null)
+    public function findXArtworks($nbr = null)
     {
         if($nbr) :
             return $this->createQueryBuilder('a')
