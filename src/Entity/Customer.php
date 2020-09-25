@@ -80,6 +80,11 @@ class Customer
      */
     private $orders;
 
+    /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles;
+
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
@@ -276,4 +281,19 @@ class Customer
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRoles() {
+        return $this->roles;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles( $roles ) {
+        $this->roles[] = $roles;
+    }
+
 }
