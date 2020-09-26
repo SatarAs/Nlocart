@@ -1,6 +1,19 @@
 {% extends 'layout.html.twig' %}
 
-{% set supportArtwork = [ 'Affiche sur toile' | trans, 'Bois' | trans, 'Mobilier' | trans, 'Plaque Emaillée' | trans, 'Plexiglas' | trans] | sort %}
+{% set supportArtwork =
+    [
+    'Affiche sur toile' | trans,
+    'Bois' | trans,
+    'Mobilier' | trans,
+    'Plaque Emaillée' | trans,
+    'Plexiglas' | trans,
+    'Rideau Métallique' | trans,
+    'Sculpture' | trans,
+    'Toile' | trans,
+    'Toile Plexiglas' | trans,
+    'Tôle en fer' | trans,
+    'Tôle Peinte' | trans
+    ] | sort %}
 
 {% block page_title %}Accueil{% endblock %}
 
@@ -9,19 +22,18 @@
     <section id="accueil animated fadeIn">
 
         <div class="container">
-{#            {% if app.session.get("forget") == 1 %}#}
+            {% if app.session.get("forget") == 1 %}
 
-{#                <div class="alert alert-success">#}
-{#                    Votre demande a bien été prise en compte , <br>#}
-{#                    Un nouveau mot de passe vous a été envoyé sur votre adresse mail#}
-{#                </div>#}
+                <div class="alert alert-success">
+                    Votre demande a bien été prise en compte , <br>
+                    Un nouveau mot de passe vous a été envoyé sur votre adresse mail
+                </div>
 
-{#            {% endif %}#}
+            {% endif %}
             <div class="row">
                 <div id="bloc_bienvenue">
                     <img class="img-responsive" src="{{ asset('build/oeuvres/ecloz_bomb.jpg') }}" alt="bombes de peinture">
                     <div class="col-xs-12 col-sm-6 col-md-5" id="bloc_texte_bienvenue">
-
                         <h1 class="col-xs-8">Bienvenue dans l'univers d'<span class="bleu_canard"><a href="{{ url('app_index')}}#artiste">Ecloz</a></span></h1>
                     </div>
                 </div>
@@ -35,35 +47,17 @@
                 </div>
             </div> <!-- /.row -->
             <div class="row" id="oeuvres_a_la_une">
-{#                <div class="col-xs-12 col-sm-3 apercu_catalogue">#}
-{#                    {% for artwork in artworks %}#}
-{#                    <a href="{{ artwork.id }}">#}
-{#                        <img class="img-thumbnail" src="{{ asset('/build/'~ artwork.artworkPicture) }}" alt="{{ artwork.artworkName }}">#}
-{#                        <div class="overlay_aperçu_catalogue">#}
-{#                            <span>{{ artwork.artworkName }}</span>#}
-{#                        </div>#}
-{#                    </a>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-
-                {{ supportArtwork[3] }}
-{#                {{ "supportArt3" | trans }}#}
-
                 {% for artwork in artworks %}
-
-                    <div class="col-xs-12 col-sm-3 apercu_catalogue">
-                        <a href="{{ artwork.id }}">
-                            <img class="img-responsive image_a_la_une" src="{{ asset('/build/'~ artwork.artworkPicture) }}">
-                            <div class="overlay_apercu_catalogue"> <span>{{ artwork.artworkName }}</span></div>
-                        </a>
-                    </div>
-
+                <div class="col-xs-12 col-sm-3 apercu_catalogue">
+                    <a href="{{ artwork.id }}" class="w-auto h-100 text-center">
+                        <img class="img-thumbnail image_a_la_une" src="{{ asset(artwork.artworkPicture) | slice(7) }}" alt="{{ artwork.artworkName }}" />
+                        <div class="overlay_apercu_catalogue"><span>{{ artwork.artworkName }}</span></div>
+                    </a>
+                </div>
                 {% endfor %}
             </div>
-
             <div class="row" id="lien_catalogue">
-{#              <a href="{{ url('index_catalogue') }}" class="bouton_lien">Consulter le catalogue</a>#}
-                <a href="{{ url('app_index') }}" class="bouton_lien">Consulter le catalogue</a>
+                <a href="{{ url('app_catalog') }}" class="bouton_lien">Consulter le catalogue</a>
             </div>
         </div> <!-- /.contanier -->
     </section> <!-- /#accueil -->
@@ -189,36 +183,5 @@
 {% endblock %}
 
 {% block javascripts %}
-{#    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" type="text/javascript"></script>#}
-{#    <script type="text/javascript">#}
-{#        $(function () {#}
-{#            // GOOGLE MAP sur la galerie#}
-{#            var map;#}
-{#            function initMap() {#}
-{#                var galerie_ecloz = { lat: 49.444672, lng: 1.089560 };#}
-{#                var map = new google.maps.Map(document.getElementById('map'), {#}
-{#                    zoom: 18,#}
-{#                    center: galerie_ecloz#}
-{#                });#}
-{#                var marker = new google.maps.Marker({#}
-{#                    position: galerie_ecloz,#}
-{#                    map: map#}
-{#                });#}
-{#            }#}
-{#            initMap();#}
-{#        });#}
-{#        $(window).scroll(function () {#}
-{#            var scroll = $(window).scrollTop();#}
-{#            if (scroll > 750 && scroll < 1450)  {#}
-{#                $("#lienArtiste").addClass("active_link");#}
-{#            } else {#}
-{#                $("#lienArtiste").removeClass("active_link");#}
-{#            }#}
-{#            if (scroll > 1500) {#}
-{#                $("#lienContact").addClass("active_link");#}
-{#            } else {#}
-{#                $("#lienContact").removeClass("active_link");#}
-{#            }#}
-{#        });#}
-{#    </script>#}
+
 {% endblock %}

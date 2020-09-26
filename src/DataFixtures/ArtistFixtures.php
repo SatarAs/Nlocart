@@ -25,6 +25,17 @@ class ArtistFixtures extends Fixture
                 'artist_cell_phone' => '06 85 84 24 04',
                 'artist_website' => 'https://ecloz.fr'
             ],
+            [
+                'id' => 2,
+                'artist_last_name' => 'Hégo',
+                'artist_first_name' => 'Nathan',
+                'artist_nickname' => 'SatarAs',
+                'artist_email' => 'satar09@hotmail.fr',
+                'artist_biography' => 'Bonjour, je m\'appelle Nathan Hégo et mon pseudo est SatarAs.',
+                'artist_phone_home' => null,
+                'artist_cell_phone' => '07 71 87 98 76',
+                'artist_website' => 'https://sataras.fr'
+            ]
         ];
 
         foreach ($artistFix as $artistData) {
@@ -45,7 +56,7 @@ class ArtistFixtures extends Fixture
             $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metaData->setIdGenerator(new AssignedGenerator());
 
-            $this->setReference('Artist' . $artistData['artist_nickname'], $artist);
+            $this->setReference('Artist_' . $artistData['artist_nickname'], $artist);
         }
 
         $manager->flush();
