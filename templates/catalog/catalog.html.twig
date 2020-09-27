@@ -8,12 +8,12 @@
         <section id="catalogue">
             <div class="container">
                 <div class="row">
-{#                    {% if app.request.get('commande') == true %}#}
-{#                        <div class="alert alert-success">#}
-{#                            Votre commande a bien été prise en compte,<br>#}
-{#                            Un mail de confirmation vous a été envoyé#}
-{#                        </div>#}
-{#                    {% endif %}#}
+                    {% if app.request.get('commande') == true %}
+                        <div class="alert alert-success">
+                            Votre commande a bien été prise en compte,<br>
+                            Un mail de confirmation vous a été envoyé
+                        </div>
+                    {% endif %}
                     <div class="titre_catalogue">
                         <div class="col-xs-12">
                             <h2>Le Catalogue</h2>
@@ -23,32 +23,24 @@
                 </div> <!-- /.row -->
                 <div class="row">
                     <div class="container_catalogue animated fadeInLeftBig">
-
-{#                        {% for oeuvre in paginator %}#}
-
+                        {% for artwork in artworks %}
                             <div class="col-xs-6 col-sm-3 col-md-2 apercu_catalogue">
                                 <div class="image-gallerie">
-                                    <a href="#">
+                                    <a href="{{ artwork.id }}">
 {#                                    <a href="{{ oeuvre | oeuvrelink}}">#}
-                                        <img class="img-responsive" src="#">
+                                        <img class="img-thumbnail" src="{{ asset(artwork.artworkPicture) | slice(7) }}" alt="{{ artwork.artworkName }}">
 {#                                        <img class="img-responsive" src="{{ asset('img/')~ oeuvre.imgOeuvre }}">#}
-                                        <div class="overlay_catalogue"> <span>Nom</span></div>
+                                        <div class="overlay_catalogue"> <span>{{ artwork.artworkName }}</span></div>
 {#                                        <div class="overlay_catalogue"> <span>{{ oeuvre.nomOeuvre }}</span></div>#}
                                     </a>
                                 </div>
                             </div>
-
-{#                        {% endfor %}#}
-
+                        {% endfor %}
                     </div>	<!-- /.container_catalogue -->
                 </div> <!-- /.row -->
                 <div class="row">
                     <div class="pagination">
-
-{#                        {% for p in 1..nbpages %}#}
-{#                            <a {% if p== current %} class="current" {%endif%}#}
-{#                                    href="{{ url('app_catalog', {p:p}) }}">{{ p }}</a>#}
-{#                        {% endfor  %}#}
+                        {{ knp_pagination_render(artworks) }}
                     </div> <!-- /.pagination -->
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
