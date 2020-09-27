@@ -109,7 +109,7 @@ body {
 main {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
+    margin-top: 80px;
     max-width: 1200px;
 
     background-color: #f3f3f3;
@@ -564,23 +564,55 @@ footer img {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: flex!important;
 }
 
-.pagination a {
-    color: #000000;
-    padding-left: 5px;
-    padding-right: 5px;
+.pagination ul {
+    margin-top: revert;
+    font-size: 20px;
 }
 
-.pagination a.current {
+.pagination ul li.page-item.disabled > span.page-link {
+    border-color: #D3D3D3;
+    background-color: #D3D3D3;
+    color: #4a4a4a;
+    margin: 0 5px;
+}
+
+.pagination ul li.page-item > a.page-link:hover  {
+    border-color: #046271!important;
+    background-color: #046271!important;
+    color: #dee2e6!important;
+}
+
+.pagination ul li.page-item.active > span.page-link {
+    border-color: rgb(37, 37, 37)!important;
+    background-color: rgb(37, 37, 37)!important;
+}
+
+.pagination ul li.page-item > span.page-link {
+    border-color: #048B9A;
     background-color: #048B9A;
-    color: #FFFFFF;
-    padding: 5px 10px;
 }
 
-.pagination a:hover {
-    text-decoration: underline;
+.pagination ul li.page-item > a.page-link {
+    border-color: #048B9A;
+    background-color: #048B9A;
+    color: #fff;
+}
+
+.pagination ul li.page-item > a.page-link[rel=next] {
+    border-color: #048B9A;
+    background-color: #048B9A;
+    color: #fff;
+    margin: 0 5px;
+}
+
+.pagination ul li.page-item > a.page-link[rel=prev] {
+    border-color: #048B9A;
+    background-color: #048B9A;
+    color: #fff;
+    margin: 0 5px;
 }
 
 .image-gallerie {
