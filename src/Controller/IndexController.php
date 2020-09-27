@@ -18,20 +18,8 @@ class IndexController extends AbstractController
      */
     public function index() : Response
     {
-
-        $repoCat = $this->getDoctrine()->getRepository(ArtworkSupport::class);
-
-        $repoCat = $repoCat->findAll();
-
         $repo = $this->getDoctrine()->getRepository(Artwork::class);
-
-//        $artworks = $repo->findAll();
-
         $artworks = $repo->findXArtworks(4);
-
-        # Récupération des 4 desnieres oeuvres
-//        $oeuvres = $this->getDoctrine()->getRepository(Oeuvre::class);
-//        $oeuvres = $oeuvres -> findXOeuvres(4);
 
         if(!$artworks) {
             throw $this->createNotFoundException('Aucune oeuvre disponible !');
@@ -39,8 +27,7 @@ class IndexController extends AbstractController
 
         return $this->render('index/index.html.twig', [
             'route_name' => 'app_index',
-            'artworks' => $artworks,
-            'test' => $repoCat
+            'artworks' => $artworks
         ]);
     }
 }
