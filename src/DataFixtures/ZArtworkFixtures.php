@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Artwork;
+use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -14,19 +15,20 @@ class ZArtworkFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('FR-fr');
+        $slugify = new Slugify();
 
         $files = glob('public/build/oeuvres/' . '*.{jpg,gif,png}', GLOB_BRACE);
 
         for ($i = 1; $i <= 30; $i++) {
 
             $randomPicture = $files[array_rand($files)];
-
+            $test = $faker->name;
             $artworkFix = [
                 [
                     'artwork_category' => $this->getReference("Category_Tableau"),
                     'artist' => $this->getReference("Artist_SatarAs" ),
                     'artwork_support' => $this->getReference("Support_Bois"),
-                    'artwork_name' => $faker->name(),
+                    'artwork_name' => $test,
                     'artwork_picture' =>  $randomPicture,   //    OR    //$faker->imageUrl(640, 480, "abstract", true),
                     'artwork_creation_date' => new \DateTime('now'),
                     'artwork_height' => floatval(rand(0, 500)),
@@ -37,7 +39,8 @@ class ZArtworkFixtures extends Fixture
                     'artwork_rental_price' => $faker->randomNumber(rand(100, 10000) || null),
                     'artwork_description' => $faker->paragraph(5, true),
                     'artwork_availability' => boolval(mt_rand(0, 1)),
-                    'artwork_special' => boolval(mt_rand(0, 1))
+                    'artwork_special' => boolval(mt_rand(0, 1)),
+                    'slug' => $slugify->slugify($test)
                 ],
             ];
 
@@ -59,6 +62,7 @@ class ZArtworkFixtures extends Fixture
                 $artwork->setArtworkDescription($artworksData['artwork_description']);
                 $artwork->setArtworkAvailability($artworksData['artwork_availability']);
                 $artwork->setArtworkSpecial($artworksData['artwork_special']);
+                $artwork->setSlug($artworksData['slug']);
 
                 $manager->persist($artwork);
 
