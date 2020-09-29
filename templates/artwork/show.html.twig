@@ -1,0 +1,69 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %} {{ artwork.artworkname }}{% endblock %}
+
+{% block content %}
+
+    <main class="no-bg">
+        <section id="oeuvre">
+            <div class="container">
+                <div id="presentation_oeuvre" class="animated fadeIn">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-5" id="photo_oeuvre">
+                            <img class="img-responsive center-block" src="{{ asset(artwork.artworkPicture) | slice(7) }}" alt="photo de l'oeuvre {{ artwork.artworkName }}">
+                        </div>
+                        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-0 col-md-5 ml-auto" id="texte_presentation">
+                            <h1>{{artwork.artworkname}}</h1>
+                            <div class="presentation_oeuvre">
+                                <p><span class="titre_description_oeuvre">Support :</span>{{artwork.artworkSupport.artworkSupportLabel}}</p>
+                                <p><span class="titre_description_oeuvre">Technique(s) Utilisée(s) :</span> {%for technic in technical %}
+                                        {{ technic.artworkTechnical.artworkTechnicalLabel }}&nbsp;&nbsp;&nbsp;{% endfor %}</p>
+                                <p><span class="titre_description_oeuvre">Année de Production :</span>{{ artwork.artworkCreationDate | date('d/m/Y')}}</p>
+                                <p><span class="titre_description_oeuvre">Dimensions (H x l x p) :</span> {{ artwork.artworkHeight}} x {{artwork.artworkWidth}} x {{artwork.artworkDepth}}  cm</p>
+                                <p><span class="titre_description_oeuvre">Poids :</span> {{artwork.artworkWeight}} kg </p>
+                                <p class="line"><span class="titre_description_oeuvre">Disponibilité</span> {% if(artwork.artworkAvailability ==true) %} <p class="disponible">Disponible</p>{% else %} <p class="indisponible danger">Indisponible</p>{% endif %}
+                                <p><span class="titre_description_oeuvre">Prix de Vente en Atelier :</span> {{ artwork.artworkSalePrice}} €</p>
+                                <p><span class="titre_description_oeuvre">Prix en location (Bail de 180 jours) :</span>  {{ artwork.artworkRentalPrice}}€</p>
+                            </div>
+                            <div class="renseignements_location_oeuvre">
+                                <div class="groupe_bouton">
+                                    <div class="bouton">
+                                        <a href="{{ url('order',{slug:artwork.slug}) }}" class="btn btn-primary bouton_louer">Je souhaite LOUER cette œuvre</a>
+                                    </div>
+                                    <div class="bouton">
+                                        <a href="{{ url('order',{slug:artwork.slug}) }}" class="btn btn-purple bouton_acheter">Je souhaite ACHETER cette œuvre</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.row -->
+                </div>
+                <div class="suggestions">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2>A découvrir</h2>
+                                </div>
+                                <div class="col-xs-5 col-sm-6 col-md-4" id="trait_bleu"></div>
+                            </div>
+                            <div class="row" id="oeuvres_a_la_une">
+                                {% for artwork in random %}
+                                    <div class="col-xs-4 col-sm-4 col-md-2 apercu_catalogue a_decouvrir">
+                                        <a href="{{ artwork.slug }}">
+                                            <img class="img-thumbnail" src="{{ asset(artwork.artworkPicture) | slice(7) }}" alt="photo de l'oeuvre {{ artwork.artworkName }}">
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="lien_contact_artiste">
+                        <a href="{{ url('app_index')}}#contact" class="bouton_lien">Contacter l'artiste</a>
+                    </div>
+                </div> <!-- /.container -->
+            </div>
+        </section> <!-- /#oeuvre -->
+    </main>
+
+{% endblock %}

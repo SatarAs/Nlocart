@@ -36,6 +36,15 @@ class ArtworkRepository extends ServiceEntityRepository
         endif;
     }
 
+    public function RandomArtworks($max)
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Artwork[] Returns an array of Artwork objects
     //  */
