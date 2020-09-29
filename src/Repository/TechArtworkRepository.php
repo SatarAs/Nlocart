@@ -19,6 +19,19 @@ class TechArtworkRepository extends ServiceEntityRepository
         parent::__construct($registry, TechArtwork::class);
     }
 
+
+
+    public function findTechByArtwork($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.artwork = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return TechArtwork[] Returns an array of TechArtwork objects
     //  */
