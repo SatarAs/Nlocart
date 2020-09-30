@@ -4,36 +4,28 @@ namespace App\DataFixtures;
 
 use App\Entity\Artist;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 
-class ArtistFixtures extends Fixture
+class ArtistFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
         $artistFix = [
             [
                 'id' => 1,
-                'artist_last_name' => 'Vincent',
-                'artist_first_name' => 'Guillaume',
-                'artist_nickname' => 'Ecloz',
-                'artist_email' => 'ecloze@hotmail.fr',
+                'customer_id' => $this->getReference('Customer_Ecloz'),
                 'artist_biography' => 'Bonjour, je m\'appelle Guillaume Vincent et mon pseudo est Ecloz.
                     Pour mon projet, voici Nlocart !',
-                'artist_phone_home' => null,
-                'artist_cell_phone' => '06 85 84 24 04',
                 'artist_website' => 'https://ecloz.fr'
             ],
             [
                 'id' => 2,
-                'artist_last_name' => 'Hégo',
-                'artist_first_name' => 'Nathan',
-                'artist_nickname' => 'SatarAs',
-                'artist_email' => 'satar09@hotmail.fr',
+                 'customer_id' => $this->getReference('Customer_SatarAs'),
                 'artist_biography' => 'Bonjour, je m\'appelle Nathan Hégo et mon pseudo est SatarAs.',
-                'artist_phone_home' => null,
-                'artist_cell_phone' => '07 71 87 98 76',
                 'artist_website' => 'https://sataras.fr'
             ]
         ];
@@ -41,13 +33,8 @@ class ArtistFixtures extends Fixture
         foreach ($artistFix as $artistData) {
             $artist = new Artist();
             $artist->setId($artistData['id']);
-            $artist->setArtistLastName($artistData['artist_last_name']);
-            $artist->setArtistFirstName($artistData['artist_first_name']);
-            $artist->setArtistNickname($artistData['artist_nickname']);
-            $artist->setArtistEmail($artistData['artist_email']);
+            $artist->setCustomer($artistData['customer_id']);
             $artist->setArtistBiography($artistData['artist_biography']);
-            $artist->setArtistPhoneHome($artistData['artist_phone_home']);
-            $artist->setArtistCellPhone($artistData['artist_cell_phone']);
             $artist->setArtistWebsite($artistData['artist_website']);
 
             $manager->persist($artist);
@@ -56,9 +43,23 @@ class ArtistFixtures extends Fixture
             $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metaData->setIdGenerator(new AssignedGenerator());
 
-            $this->setReference('Artist_' . $artistData['artist_nickname'], $artist);
+
+            $this->setReference('Artist_' . $artistData['id'], $artist);
         }
 
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return array(
+            CustomerFixtures::class
+        );
+    }
+
+    public static function getGroups(): array
+    {
+    return ['categories'];
+    }
+
 }
