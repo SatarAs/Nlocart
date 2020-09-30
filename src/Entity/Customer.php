@@ -81,9 +81,9 @@ class Customer
     private $orders;
 
     /**
-     * @ORM\Column(name="roles", type="array")
+     * @ORM\OneToOne(targetEntity=Artist::class, mappedBy="customer", cascade={"persist", "remove"})
      */
-    private $roles;
+    private $artist;
 
     public function __construct()
     {
@@ -94,6 +94,13 @@ class Customer
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getCustomerLastName(): ?string
@@ -282,18 +289,21 @@ class Customer
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRoles() {
-        return $this->roles;
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
     }
 
-    /**
-     * @param mixed $roles
-     */
-    public function setRoles( $roles ) {
-        $this->roles[] = $roles;
+    public function setArtist(Artist $artist): self
+    {
+        $this->artist = $artist;
+
+        // set the owning side of the relation if necessary
+        if ($artist->getCustomer() !== $this) {
+            $artist->setCustomer($this);
+        }
+
+        return $this;
     }
 
 }
