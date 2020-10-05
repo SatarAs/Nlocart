@@ -59,7 +59,7 @@ class ArtworkTechnicalFixtures extends Fixture implements FixtureGroupInterface
             $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metaData->setIdGenerator(new AssignedGenerator());
 
-            $this->setReference('Technical_' . $technicalData['artwork_technical_label'], $technical);
+            $this->setReference('Technical_' . $technicalData['id'], $technical);
         }
 
         $manager->flush();
