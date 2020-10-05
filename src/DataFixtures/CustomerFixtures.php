@@ -11,15 +11,25 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Provider\fr_FR\PhoneNumber;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomerFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('FR-fr');
         $phone = PhoneNumber::randomNumber(8, true);
 
         $array = array("Particulier", "Professionnel");
+
+
 
         $customerFix = [
             [
@@ -75,7 +85,7 @@ class CustomerFixtures extends Fixture implements DependentFixtureInterface, Fix
             $customer->setCustomerFirstName($customerData['customer_first_name']);
             $customer->setCustomerNickname($customerData['customer_nickname']);
             $customer->setCustomerEmail($customerData['customer_email']);
-            $customer->setPassword($customerData['password']);
+            $customer->setPassword($this->passwordEncoder->encodePassword($customer, $customerData['password']));
             $customer->setCustomerPhoneHome($customerData['customer_phone_home']);
             $customer->setCustomerCellPhone($customerData['customer_cell_home']);
             $customer->setCustomerCompany($customerData['customer_company']);
