@@ -5,12 +5,14 @@ namespace App\DataFixtures;
 use App\Entity\Artwork;
 use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class ZArtworkFixtures extends Fixture
+class ArtworkFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -26,7 +28,7 @@ class ZArtworkFixtures extends Fixture
             $artworkFix = [
                 [
                     'artwork_category' => $this->getReference("Category_Tableau"),
-                    'artist' => $this->getReference("Artist_SatarAs" ),
+                    'artist' => $this->getReference('Artist_' . 2),
                     'artwork_support' => $this->getReference("Support_Bois"),
                     'artwork_name' => $test,
                     'artwork_picture' =>  $randomPicture,   //    OR    //$faker->imageUrl(640, 480, "abstract", true),
@@ -70,9 +72,23 @@ class ZArtworkFixtures extends Fixture
                 $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
                 $metaData->setIdGenerator(new AssignedGenerator());
 
-                $this->setReference('Artwork_' . $i . 'artwork_name', $artwork);
+                $this->setReference('Artwork_' . $i, $artwork);
             }
         }
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return array(
+            ArtistFixtures::class
+        );
+    }
+
+    public static function getGroups(): array
+    {
+       return ['categories'];
+
+    }
+
 }

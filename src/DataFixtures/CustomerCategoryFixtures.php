@@ -4,11 +4,12 @@ namespace App\DataFixtures;
 
 use App\Entity\CustomerCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 
-class CustomerCategoryFixtures extends Fixture
+class CustomerCategoryFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -34,9 +35,15 @@ class CustomerCategoryFixtures extends Fixture
             $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metaData->setIdGenerator(new AssignedGenerator());
 
-            $this->setReference('CustomerCategory_' . $customerCatData['customer_category_label'], $customCat);
+            $this->setReference('CustomerCat_' . $customerCatData['customer_category_label'], $customCat);
         }
 
         $manager->flush();
     }
+
+    public static function getGroups(): array
+    {
+        return ['categories'];
+    }
+
 }

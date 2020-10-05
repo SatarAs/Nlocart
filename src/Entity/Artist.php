@@ -20,39 +20,15 @@ class Artist
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity=Customer::class, inversedBy="artist", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $artistLastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $artistFirstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $artistNickname;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $artistEmail;
+    private $customer;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $artistBiography;
-
-    /**
-     * @ORM\Column(type="string", length=45, nullable=true)
-     */
-    private $artistPhoneHome;
-
-    /**
-     * @ORM\Column(type="string", length=45)
-     */
-    private $artistCellPhone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -63,6 +39,7 @@ class Artist
      * @ORM\OneToMany(targetEntity=Artwork::class, mappedBy="artist")
      */
     private $artworks;
+
 
     public function __construct()
     {
@@ -81,50 +58,14 @@ class Artist
         return $this;
     }
 
-    public function getArtistLastName(): ?string
+    public function getCustomer(): ?Customer
     {
-        return $this->artistLastName;
+        return $this->customer;
     }
 
-    public function setArtistLastName(string $artistLastName): self
+    public function setCustomer(Customer $customer): self
     {
-        $this->artistLastName = $artistLastName;
-
-        return $this;
-    }
-
-    public function getArtistFirstName(): ?string
-    {
-        return $this->artistFirstName;
-    }
-
-    public function setArtistFirstName(string $artistFirstName): self
-    {
-        $this->artistFirstName = $artistFirstName;
-
-        return $this;
-    }
-
-    public function getArtistNickname(): ?string
-    {
-        return $this->artistNickname;
-    }
-
-    public function setArtistNickname(string $artistNickname): self
-    {
-        $this->artistNickname = $artistNickname;
-
-        return $this;
-    }
-
-    public function getArtistEmail(): ?string
-    {
-        return $this->artistEmail;
-    }
-
-    public function setArtistEmail(string $artistEmail): self
-    {
-        $this->artistEmail = $artistEmail;
+        $this->customer = $customer;
 
         return $this;
     }
@@ -137,30 +78,6 @@ class Artist
     public function setArtistBiography(?string $artistBiography): self
     {
         $this->artistBiography = $artistBiography;
-
-        return $this;
-    }
-
-    public function getArtistPhoneHome(): ?string
-    {
-        return $this->artistPhoneHome;
-    }
-
-    public function setArtistPhoneHome(?string $artistPhoneHome): self
-    {
-        $this->artistPhoneHome = $artistPhoneHome;
-
-        return $this;
-    }
-
-    public function getArtistCellPhone(): ?string
-    {
-        return $this->artistCellPhone;
-    }
-
-    public function setArtistCellPhone(string $artistCellPhone): self
-    {
-        $this->artistCellPhone = $artistCellPhone;
 
         return $this;
     }

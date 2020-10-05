@@ -4,11 +4,12 @@ namespace App\DataFixtures;
 
 use App\Entity\ArtworkTechnical;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 
-class ArtworkTechnicalFixtures extends Fixture
+class ArtworkTechnicalFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -58,9 +59,14 @@ class ArtworkTechnicalFixtures extends Fixture
             $metaData->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metaData->setIdGenerator(new AssignedGenerator());
 
-            $this->setReference('Technical_' . $technicalData['artwork_technical_label'], $technical);
+            $this->setReference('Technical_' . $technicalData['id'], $technical);
         }
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['categories'];
     }
 }

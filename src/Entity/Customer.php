@@ -6,11 +6,12 @@ use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
  */
-class Customer
+class Customer implements UserInterface
 {
     /**
      * @ORM\Id
@@ -81,9 +82,9 @@ class Customer
     private $orders;
 
     /**
-     * @ORM\Column(name="roles", type="array")
+     * @ORM\OneToOne(targetEntity=Artist::class, mappedBy="customer", cascade={"persist", "remove"})
      */
-    private $roles;
+    private $artist;
 
     public function __construct()
     {
@@ -94,6 +95,13 @@ class Customer
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getCustomerLastName(): ?string
@@ -145,7 +153,7 @@ class Customer
     }
 
     /**
-     * @return mixed
+     * @see UserInterface
      */
     public function getPassword()
     {
@@ -282,18 +290,52 @@ class Customer
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRoles() {
-        return $this->roles;
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(Artist $artist): self
+    {
+        $this->artist = $artist;
+
+        // set the owning side of the relation if necessary
+        if ($artist->getCustomer() !== $this) {
+            $artist->setCustomer($this);
+        }
+
+        return $this;
     }
 
     /**
-     * @param mixed $roles
+     * @inheritDoc
      */
-    public function setRoles( $roles ) {
-        $this->roles[] = $roles;
+    public function getRoles()
+    {
+        return ['ROLE_MEMBER'];
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->customerEmail;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

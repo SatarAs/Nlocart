@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,18 @@ class SecurityController extends AbstractController
             'lastEmail' => $lastEmail,
             'error' => $error
         ]);
+    }
+
+    /**
+     * @Route({
+     *     "fr": "/déconnexion",
+     *     "en": "/logout"
+     * }, name="app_logout", methods={"GET", "POST"})
+     * @throws Exception
+     */
+    public function logout() : Response
+    {
+        throw new Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
 
 }

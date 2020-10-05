@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\ArtworkTechnicalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,7 +24,7 @@ class ArtworkTechnical
     private $artworkTechnicalLabel;
 
     /**
-     * @ORM\OneToMany(targetEntity=TechArtwork::class, mappedBy="ArtworkTechnical")
+     * @ORM\OneToMany(targetEntity=TechArtwork::class, mappedBy="artworkTechnical")
      */
     private $techArtworks;
 
