@@ -33,11 +33,9 @@
                 {#                    {% endif %}#}
 
                 {%  if is_granted('IS_AUTHENTICATED_FULLY')%}
-                    {#                    <li><a href="{{ url('deconnexion') }}">Déconnexion</a></li>#}
-                    <li><a href="#">{{ "Déconnexion" | trans }}</a></li>
+                    <li><a href="{{ path('app_logout') }}">{{ "Déconnexion" | trans }}</a></li>
                 {% else %}
-                    <li class="nav-item d-inline-block"><a class="nav-link text-nowrap" href="{{ url('app_index') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Se Connecter" | trans }}</a></li>
-                    {#                                            <li><a href="{{ url('security_connexion') }}" {% if active_link == 'login' %} {{ "class=\"active_link\"" }} {% endif %}>Se Connecter</a></li>#}
+                    <li class="nav-item d-inline-block"><a class="nav-link text-nowrap" href="{{ url('app_login') }}" {% if route_name == 'app_index' %} class="active_link" {% else %} class=""{% endif %}>{{ "Se Connecter" | trans }}</a></li>
                     {#                    <li><a href="{{ url('security_inscription') }}" {% if active_link == 'inscription' %} {{ "class=\"active_link\"" }} {% endif %}>Inscription</a>#}
                 {% endif %}
             </ul>
