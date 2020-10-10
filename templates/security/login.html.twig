@@ -17,13 +17,12 @@
                         </div>
                     {% endif %}
 
-                    {% if app.request.get('app_register') == 'success' %}
+                    {% for message in app.flashes('success') %}
                         <div class="alert alert-success">
                             <p class="text-center"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></p>
-                            <p class="text-center">Félicitations, votre inscription est effective.
-                                <br>Vous pouvez maintenant vous connecter.</p>
+                            <p class="text-center">{{ message| replace({";":"<br/>"}) | raw }}</p>
                         </div>
-                    {% endif %}
+                    {% endfor %}
 
                     <input name="_username" type="text" class="form-control" id="username" placeholder="Saississez votre email" required autofocus="" value="{{ lastEmail }}">
                     <input name="_password" type="password" class="form-control" id="password"  placeholder="Entrez votre mot de passe" required>
