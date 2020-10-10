@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Inscription{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block content %}
+
+    <main class="no-bg">
+        <section id="inscription" class="animated fadeInLeftBig">
+            <div class="container" id="inscription_form">
+                <div class="col-xs-6 col-xs-push-3">
+                    <h1 class="form-signin-heading text-muted">Inscrivez-vous</h1>
+                    <div class="col-md-12 mb-5">
+                            {{ form_start(form) }}
+
+                        {{ form_row(form.customerCategory) }}
+
+                        <div id="register_pro" class="d-none">
+                            {{ form_row(form.customerCompany) }}
+                            {{ form_row(form.customerSiretCompany) }}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.customerLastName) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.customerFirstName) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.customerNickname) }}
+                        {{ form_row(form.customerEmail) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.password) }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password-confirm" class="required">Confirmation du mot de passe : </label>
+                                <input type="password" name="password-confirm" class="form-control" placeholder="Vérification du mot de passe">
+                            </div>
+                        </div>
+{#                         {% if mdpVError is not null %}#}
+{#                             {{ mdpVError }}#}
+{#                         {% endif %}#}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.customerPhoneHome) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.customerCellPhone) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.reset) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.submit) }}
+                            </div>
+                        </div>
+                            {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
