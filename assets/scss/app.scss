@@ -35,6 +35,11 @@ form ul li {
     font-family: lato_black, sans-serif;
 }
 
+label.required:after {
+    content: "* ";
+    color: red;
+}
+
 .line {
     display: inline-block;
     margin-bottom: 10px;
@@ -799,6 +804,10 @@ input {
     max-width: calc(50% - 10px);
     margin-right: 8px;
     display: inline;
+}
+
+#register_reset {
+    background-color: #c63834;
 }
 
 #contact_validate, #signIn_Validate {

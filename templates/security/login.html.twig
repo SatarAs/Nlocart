@@ -17,13 +17,12 @@
                         </div>
                     {% endif %}
 
-                    {% if app.request.get('register') == 'success' %}
+                    {% for message in app.flashes('success') %}
                         <div class="alert alert-success">
                             <p class="text-center"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></p>
-                            <p class="text-center">Félicitations, votre inscription est effective.
-                                <br>Vous pouvez maintenant vous connecter.</p>
+                            <p class="text-center">{{ message| replace({";":"<br/>"}) | raw }}</p>
                         </div>
-                    {% endif %}
+                    {% endfor %}
 
                     <input name="_username" type="text" class="form-control" id="username" placeholder="Saississez votre email" required autofocus="" value="{{ lastEmail }}">
                     <input name="_password" type="password" class="form-control" id="password"  placeholder="Entrez votre mot de passe" required>
@@ -31,12 +30,12 @@
                     <input type="hidden" name="_target_path" value="{{ path('app_index') }}" />
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
                     <div>
-                        <input id="signIn_Reset" class="btn btn-lg btn-block bouton_lien" type="reset" value="Annuler">
+                        <input id="signIn_Reset" class="btn btn-lg btn-block bouton_lien" type="reset" value="Effacer">
                         <input id="signIn_Validate" class="btn btn-lg btn-block bouton_lien" type="submit" value="Connexion">
                     </div>
                 </form>
                 <div class="sub_section_login">
-                    <a href="{{url('app_forget_password')}}">Mot de passe oublié</a> | <a href="{{ url('register') }}">Inscrivez-vous</a>
+                    <a href="{{url('app_forget_password')}}">Mot de passe oublié</a> | <a href="{{ url('app_register') }}">Inscrivez-vous</a>
                 </div>
             </div>
         </section>

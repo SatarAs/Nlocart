@@ -16,8 +16,6 @@ require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
-
 // Tooltips
 $(document).ready(function() {
     $("body").tooltip({
@@ -25,6 +23,17 @@ $(document).ready(function() {
         delay: {
             show: 100,
             hide: 200
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#register_customerCategory').change(function() {
+        if ($('select[id$="register_customerCategory"]>option:selected').text() === "Professionnel") {
+            $('#register_pro').removeClass("d-none");
+        }
+        else {
+            $('#register_pro').addClass("d-none");
         }
     });
 });
