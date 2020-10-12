@@ -1,20 +1,70 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block page_title %}Mon compte{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <main class="no-bg">
+        <section id="account">
+            <div class="container">
+                {% if app.request.get('delete') == 1 %}
+                    <div class="alert alert-success">
+                        <p class="text-center mb-0"> Suppression réussie </p>
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <div class="titre_catalogue">
+                        <div class="col-xs-12">
+                            <h2>Mon compte</h2>
+                        </div>
+                        <div class="col-xs-5 col-sm-6 col-md-4" id="trait_bleu"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container container_catalogue">
+                        <div class="col-xs-12 col-md-3 sidebar">
+                            <div class="content-box">
+                                <ul class="nav flex-column">
+                                    <!-- Main menu -->
+                                    <li class="nav-item"><a href="{{ url('app_account') }}" class="nav-link font-weight-bold"><i class="fas fa-user-edit"></i> Modifier mon compte</a></li>
+                                    {% if customerWaitingOrders %}
+                                        <li class="nav-item"><hr class="border-top mt-1 mb-1"></li>
+                                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-exclamation-circle"></i> Demande(s) en attente(s)</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-9">
+                            <div class="content-box-header">
+                                <div class="panel-title titre-moncompte">
+                                    <p class="font-weight-bolder">Bonjour {{ app.user.customerFirstName }},</p>
+                                    <p class="font-weight-bolder">&#192 ce jour vous avez :</p>
+                                </div>
+                            </div>
+                            <div class="content-box-large">
+                                <ul class="list-group list-group-hover">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="md-v-line-l"></div><i class="fas fa-record-vinyl bleu"></i>
+                                        <a href="" class="bleu">demandes en attente</a>
+                                        <span class="badge badge-primary badge-pill back-bleu">{{ nbrWaitRes }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center vert">
+                                        <div class="md-v-line-l"></div><i class="fas fa-record-vinyl vert"></i>
+                                        <a href="" class="vert">demandes validées</a>
+                                        <span class="badge badge-primary badge-pill back-vert">{{ nbrValidRes }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center orange">
+                                        <div class="md-v-line-l"></div><i class="fas fa-record-vinyl orange"></i>
+                                        <a href="" class="orange">demandes refusées</a>
+                                        <span class="badge badge-primary badge-pill back-orange">{{ nbrRefuseRes }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'F:/wamp64-save/www/nlocart/src/Controller/AccountController.php'|file_link(0) }}">src/Controller/AccountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'F:/wamp64-save/www/nlocart/templates/account/index.html.twig'|file_link(0) }}">templates/account/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
