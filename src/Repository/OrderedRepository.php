@@ -19,6 +19,16 @@ class OrderedRepository extends ServiceEntityRepository
         parent::__construct($registry, Ordered::class);
     }
 
+    public function findWaintingOrders(){
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.orderStatus = 0')
+            ->orderBy('c.orderDate', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
     // /**
     //  * @return Ordered[] Returns an array of Ordered objects
     //  */

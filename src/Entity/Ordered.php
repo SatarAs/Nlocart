@@ -53,6 +53,11 @@ class Ordered
     private $orderRental;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $decision;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="orders")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -151,6 +156,14 @@ class Ordered
         $this->orderRental = $orderRental;
 
         return $this;
+    }
+
+    public function getDecision() {
+        return $this->decision;
+    }
+
+    public function setDecision( $decision ) {
+        $this->decision = $decision;
     }
 
     public function getCustomer(): ?Customer
