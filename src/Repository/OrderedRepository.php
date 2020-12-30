@@ -29,6 +29,26 @@ class OrderedRepository extends ServiceEntityRepository
 
     }
 
+    public function findValidatedOrders(){
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.orderStatus = 1')
+            ->andWhere('c.decision = 1')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    public function findRefusedOrders(){
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.orderStatus = 1')
+            ->andWhere('c.decision = 0')
+            ->getQuery()
+            ->getResult();
+
+    }
+
     // /**
     //  * @return Ordered[] Returns an array of Ordered objects
     //  */

@@ -92,7 +92,7 @@ label.required:after {
 }
 
 .active_link {
-    color: #048B9A !important;
+    color: #048B9A!important;
 }
 
 .clear {
@@ -1006,7 +1006,6 @@ ul.list-group.list-group-hover li:hover{
     margin: 20px 5px;
 }
 
-
 /* -------------------------- DASHBOARD USER --------------------------- */
 
 form {
@@ -1014,8 +1013,9 @@ form {
     margin-bottom: 10px;
 }
 
-
-
+.dv-dot {
+    border-left: 1px dotted #d6d6d6;
+}
 
 /* -------------------------- MEDIA QUERIES --------------------------- */
 

@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Edition du compte{% endblock %}
+
+{% block content %}
+
+    <main class="no-bg">
+        <section id="account">
+            <div class="container">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success pb-0">
+                        <p class="text-center">{{ message }}</p>
+                    </div>
+                {% endfor %}
+                {% if app.request.get('delete') == 1 %}
+                    <div class="alert alert-success">
+                        <p class="text-center mb-0"> Suppression réussie </p>
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <div class="titre_catalogue">
+                        <div class="col-xs-12">
+                            <h2>Modifier mes informations</h2>
+                        </div>
+                        <div class="col-xs-5 col-sm-6 col-md-4" id="trait_bleu"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container container_catalogue">
+                        <div class="col-xs-12 col-md-3 sidebar">
+                            <div class="content-box">
+                                <ul class="nav flex-column">
+                                    <!-- Main menu -->
+                                    <li class="nav-item"><a href="{{ url('app_account') }}" class="nav-link font-weight-bold"><i class="fas fa-user-edit"></i> Voir mon compte</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-9 d-flex align-items-center justify-content-center">
+                            <div class="col-xs-offset-1 col-xs-10 col-md-6">
+                                <div class="content-box-large box-with-header">
+                                    {{ form_start(form) }}
+                                    {% dump app.user.customerCategory %}
+                                    {% if app.user.customerCategory.id is same as (2) %}
+                                        <div id="edit_pro">
+                                            <label for="statut" class="required">Statut : </label>
+                                            {{ form_row(form.customerCompany) }}
+                                            {{ form_row(form.customerSiretCompany) }}
+                                        </div>
+                                    {% else %}
+                                        <label for="statut" class="required">Statut : </label>
+                                        {{ form_widget(form.customerCompany, { 'attr': {'class': 'd-none'} }) }}
+                                        {{ form_widget(form.customerSiretCompany, { 'attr': {'class': 'd-none'} }) }}
+                                    {% endif %}
+                                    <input type="text" class="form-control"
+                                           placeholder="{{ cat.customerCategoryLabel }}" readonly/>
+                                    {{ form_row(form.customerNickname) }}
+                                    {{ form_row(form.customerEmail) }}
+                                    {{ form_row(form.customerFirstName) }}
+                                    {{ form_row(form.customerLastName) }}
+                                    {{ form_row(form.customerPhoneHome) }}
+                                    {{ form_row(form.customerCellPhone) }}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {{ form_row(form.submit) }}
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
