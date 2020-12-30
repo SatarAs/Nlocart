@@ -1,6 +1,10 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /{_locale}
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+      route: app_index
+      permanent: true
+#    controller: App\Controller\IndexController::index
 
 mentions_legales:
   path:

@@ -5,8 +5,13 @@
 {% block content %}
 
     <main class="no-bg">
-        <section id="account">
+    <section id="account">
             <div class="container">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success pb-0">
+                        <p class="text-center">{{ message }}</p>
+                    </div>
+                {% endfor %}
                 {% if app.request.get('delete') == 1 %}
                     <div class="alert alert-success">
                         <p class="text-center mb-0"> Suppression réussie </p>
@@ -26,11 +31,33 @@
                             <div class="content-box">
                                 <ul class="nav flex-column">
                                     <!-- Main menu -->
-                                    <li class="nav-item"><a href="{{ url('app_account') }}" class="nav-link font-weight-bold"><i class="fas fa-user-edit"></i> Modifier mon compte</a></li>
-                                    {% if customerWaitingOrders %}
-                                        <li class="nav-item"><hr class="border-top mt-1 mb-1"></li>
-                                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-exclamation-circle"></i> Demande(s) en attente(s)</a></li>
+                                    <li class="nav-item"><a href="{{ url('app_edit_account') }}" class="nav-link font-weight-bold"><i class="fas fa-user-edit"></i> Modifier mon compte</a></li>
+
+                                    {# Si utilisateur acheteur, alors "demandes en attente" affiché sinon si "demandes traitées" on masque "demandes en attente" #}
+                                    {% if customerWaitingOrders or customerProcessedRes is not empty %}
+                                    <li class="nav-item"><hr class="border-top mt-1 mb-1"></li>
                                     {% endif %}
+
+                                    {% if customerWaitingOrders is not empty %}
+                                        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-exclamation-circle bleu"></i> Demande(s) en attente(s)</a></li>
+                                    {% else %}
+                                    {% endif %}
+
+                                    {% if customerProcessedRes is not empty %}
+                                        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-exclamation-circle bleu"></i> Demande(s) traitée(s)</a></li>
+                                    {% else %}
+                                    {% endif %}
+
+                                    {% if customerValidatedRes is not empty %}
+                                        <li class="nav-item ml-4 dv-dot"><a href="#" class="nav-link pl-2"><i class="fas fa-exclamation-circle vert"></i> Demande(s) validée(s)</a></li>
+                                    {% else %}
+                                    {% endif %}
+
+                                    {% if customerRefusedRes is not empty %}
+                                        <li class="nav-item ml-4 dv-dot"><a href="#" class="nav-link pl-2"><i class="fas fa-exclamation-circle orange"></i> Demande(s) refusée(s)</a></li>
+                                    {% else %}
+                                    {% endif %}
+
                                 </ul>
                             </div>
                         </div>
@@ -45,17 +72,17 @@
                                 <ul class="list-group list-group-hover">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <div class="md-v-line-l"></div><i class="fas fa-record-vinyl bleu"></i>
-                                        <a href="" class="bleu">demandes en attente</a>
+                                        <a href="" class="bleu w-100 text-center">demandes en attente</a>
                                         <span class="badge badge-primary badge-pill back-bleu">{{ nbrWaitRes }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center vert">
                                         <div class="md-v-line-l"></div><i class="fas fa-record-vinyl vert"></i>
-                                        <a href="" class="vert">demandes validées</a>
+                                        <a href="" class="vert w-100 text-center">demandes validées</a>
                                         <span class="badge badge-primary badge-pill back-vert">{{ nbrValidRes }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center orange">
                                         <div class="md-v-line-l"></div><i class="fas fa-record-vinyl orange"></i>
-                                        <a href="" class="orange">demandes refusées</a>
+                                        <a href="" class="orange w-100 text-center">demandes refusées</a>
                                         <span class="badge badge-primary badge-pill back-orange">{{ nbrRefuseRes }}</span>
                                     </li>
                                 </ul>

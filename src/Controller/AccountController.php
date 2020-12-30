@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Ordered;
+use App\Form\EditAccountFormType;
 use App\Repository\ArtworkRepository;
 use App\Repository\CustomerRepository;
 use App\Repository\OrderedRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AccountController extends AbstractController
 {
@@ -55,6 +58,9 @@ class AccountController extends AbstractController
         $orders = $customer->getOrders();
         $customerWaitingRes = $customerProcessedRes = $rentalArtworks = $selledArtworks = [];
         $nbrWaitRes = $nbrValidRes = $nbrRefuseRes = $nbrRentalRes = 0;
+        $customerValidatedRes = $this->orderedRepository->findValidatedOrders();
+        $customerRefusedRes = $this->orderedRepository->findRefusedOrders();
+
         /** @var Ordered $order */
         foreach ($orders as $order){
             if ($order->getOrderStatus() == 0){
@@ -81,9 +87,12 @@ class AccountController extends AbstractController
         }
 
         return $this->render('account/account.html.twig', [
+            'route_name' => 'app_account',
             'customer' => $customer,
             'customerWaitingOrders' => $customerWaitingRes,
             'customerProcessedRes' => $customerProcessedRes,
+            'customerValidatedRes' => $customerValidatedRes,
+            'customerRefusedRes' => $customerRefusedRes,
             'customerRentalArtworks' => $rentalArtworks,
             'customerSelledArtworks' => $selledArtworks,
             'nbrWaitRes' => $nbrWaitRes,
@@ -92,4 +101,39 @@ class AccountController extends AbstractController
             'nbrRentalRes' => $nbrRentalRes,
         ]);
     }
+
+    /**
+     * @Route({
+     *     "fr" : "/editer-compte",
+     *     "en" : "/edit-account"
+     * }, name="app_edit_account", methods={"GET", "POST"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @return Response
+     */
+    public function edit(Request $request, UserPasswordEncoderInterface $encoder) : Response
+    {
+        $user = $this->getUser();
+
+        $customer = $this->customerRepository->find($user->getId());
+        $customerForm = $this->createForm(EditAccountFormType::class, $customer);
+        $customerForm->handleRequest($request);
+        $category = $this->getUser()->getCustomerCategory();
+
+        if ($customerForm->isSubmitted() && $customerForm->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+
+            $this->addFlash('success', 'Vos informations ont été mises à jour');
+
+            return $this->redirectToRoute('app_account');
+        }
+
+        return $this->render('account/edit.html.twig', [
+            'customer' => $user,
+            'form' => $customerForm->createView(),
+            'cat' => $category
+        ]);
+    }
+
 }
